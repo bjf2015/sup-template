@@ -15,7 +15,7 @@ var should = chai.should();
 
 chai.use(chaiHttp);
 
-describe('Message endpoints', function() {
+describe.only('Message endpoints', function() {
     var server;
     beforeEach(function(done) {
         this.listPattern = new UrlPattern('/messages');
@@ -176,6 +176,7 @@ describe('Message endpoints', function() {
                 .then(function(res) {
                     // Get the list of messages from Alice
                     var url = this.listPattern.stringify() + '?from=' + this.alice._id;
+                    console.log(url);
                     return chai.request(app)
                         .get(url);
                 }.bind(this))
@@ -245,6 +246,7 @@ describe('Message endpoints', function() {
                 .then(function(res) {
                     // Get the list of messages to Chuck
                     var url = this.listPattern.stringify() + '?to=' + this.chuck._id;
+                   console.log(url);
                     return chai.request(app)
                         .get(url);
                 }.bind(this))
@@ -316,6 +318,7 @@ describe('Message endpoints', function() {
                     var url = this.listPattern.stringify() +
                               '?from=' + this.alice._id +
                               '&to=' + this.bob._id;
+                   console.log(url);
                     return chai.request(app)
                         .get(url);
                 }.bind(this))
